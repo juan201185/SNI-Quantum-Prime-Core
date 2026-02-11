@@ -19,8 +19,6 @@ $$\ln\left(\frac{P(X)}{X}\right) = K - \ln(F_{i\_ideal})$$
 
 ### 3. Conjetura de Riemann y el SNI
 Nuestra investigación postula que la **Hipótesis de Riemann** es una consecuencia mecánica de la acotación de $A'(X)$. Al demostrar que la distorsión primal está gobernada por leyes geométricas y no por el azar, la ubicación de los ceros en $Re(s)=1/2$ deja de ser una probabilidad para convertirse en una necesidad estructural del sistema numérico.
-📝 Paso 2: Actualiza la sección de Documentación
-Asegúrate de que los links a los PDF que mencionamos antes estén claros, para que Francisco sepa dónde leer:
 
 Markdown
 ## 📂 Documentación Técnica (White Papers)
