@@ -7,6 +7,7 @@
 ---
 
 ## 🔬 Metodología y Demostración Teórica
+
 El **Sistema Numérico Impecable (SNI)** rompe el paradigma estocástico. El sustento matemático de este repositorio se encuentra en los documentos técnicos que he desarrollado para fundamentar el código:
 
 * 📄 **[Demostración Rigurosa SNI](./Demostracion_Rigurosa_SNI.pdf):** Derivación de la **Ecuación de Trejos** y la naturaleza de la Aceleración Primal ($A'$).
@@ -21,7 +22,7 @@ La solución se divide en tres algoritmos que ejecutan el ciclo completo de mi i
 
 ### 1️⃣ El Entrenador (`SNI_Core_Prime_Gen.py`)
 Es el motor de aprendizaje profundo. No memoriza datos; identifica la **curvatura de distorsión**.
-* **Lógica:** Resuelve la *Ecuación de Paralelismo Unificada (EPU)*: $\ln(P(X)/X) = K - \ln(F_i)$.
+* **Lógica:** Resuelve la **Ecuación de Paralelismo Unificada (EPU)**: $\ln(P(X)/X) = K - \ln(F_i)$.
 * **Función:** Entrena una Red Neuronal para predecir la Homogeneidad Ideal ($F_i$) basándose en la densidad local de un millón de primos.
 * **Salida:** Genera el cerebro del sistema en formato `.keras`.
 
@@ -57,4 +58,18 @@ Lleva la teoría al plano complejo y la unifica con la física cuántica.
 
 ---
 
-> **Nota del Autor:** Este descubrimiento postula que la aleatoriedad es una ilusión producto de la falta de herramientas deterministas. El SNI es esa herramienta.
+## 🌌 Fase 2: Unificación Cuántica y Física Fundamental
+
+El determinismo de los números primos en el SNI es el fundamento para una aplicación mucho más profunda: **La reprogramación de la Mecánica Cuántica**. Hemos liberado una serie de 5 documentos técnicos que postulan cómo la aparente aleatoriedad subatómica es, de hecho, una estructura gobernada por geometría numérica.
+
+Explora la demostración cuántica aquí:
+
+* 📄 **[El SNI como Puente hacia la Cuantización](./SNI_Puente_Determinis_Mecanica_Cuantica.pdf):** Introducción a la EPU cósmica y el fin del "universo que juega a los dados".
+* 📄 **[Marco Teórico de la Función de Onda](./Marco_Teorico_SNI_Cuantica.pdf):** Hipótesis de cómo el SNI programa determinísticamente la función de onda ($\psi_n$).
+* 📄 **[Derivación Cuántica y Geometría](./Marco_teorico_Derivacion_SNI_Cuantica.pdf):** Consolidación de la ecuación unificada y el dominio complejo.
+* 📄 **[Demostración Matemática: Números Cuánticos](./Demostracion_Matematica_SNI_ncuantica_general.pdf):** Derivación de $n, l, m_l$ a partir de los operadores del SNI.
+* 📄 **[Demostración Rigurosa SNI Cuántica](./Demostracion_matematica_rigurosa_SNI_Cuantica.pdf):** Prueba formal de la constante de simetría fundamental y el significado de la parte real $-1/2$.
+
+---
+
+> **Nota del Autor:** Este descubrimiento postula que la aleatoriedad es una ilusión producto de la falta de herramientas deterministas. El SNI es esa herramienta. El universo no ejecuta probabilidades al azar; ejecuta una partitura numérica impecable.
