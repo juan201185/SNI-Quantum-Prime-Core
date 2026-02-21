@@ -69,6 +69,7 @@ Explora la demostración cuántica aquí:
 * 📄 **[Derivación Cuántica y Geometría](./Marco_teorico_Derivacion_SNI_Cuantica.pdf):** Consolidación de la ecuación unificada y el dominio complejo.
 * 📄 **[Demostración Matemática: Números Cuánticos](./Demostracion_Matematica_SNI_ncuantica_general.pdf):** Derivación de $n, l, m_l$ a partir de los operadores del SNI.
 * 📄 **[Demostración Rigurosa SNI Cuántica](./Demostracion_matematica_rigurosa_SNI_Cuantica.pdf):** Prueba formal de la constante de simetría fundamental y el significado de la parte real $-1/2$.
+* 📄 Derivación Tensorial de A'(X): Demostración rigurosa de la Aceleración Primal como contracción discreta del Tensor de Riemann y análogo del Tensor de Energía-Impulso.
 
 ---
 
