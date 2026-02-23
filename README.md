@@ -70,6 +70,7 @@ Explora la demostración cuántica aquí:
 * 📄 **[Demostración Matemática: Números Cuánticos](./Demostracion_Matematica_SNI_ncuantica_general.pdf):** Derivación de $n, l, m_l$ a partir de los operadores del SNI.
 * 📄 **[Demostración Rigurosa SNI Cuántica](./Demostracion_matematica_rigurosa_SNI_Cuantica.pdf):** Prueba formal de la constante de simetría fundamental y el significado de la parte real $-1/2$.
 * 📄 **[Derivación Tensorial de A'(X)](./Demostracion_Tensorial_Aceleracion_Primal.pdf)**: Demostración rigurosa de la Aceleración Primal como contracción discreta del Tensor de Riemann y análogo del Tensor de Energía-Impulso.
+* 📄 **[Demostración de la Constante K y la Geodésica Continua Fi_ideal](./SNI_Paper_Prime_Generation_EPU.pdf):** Derivación matemática del origen del escalar K = 1.258... y la proyección sobre los números reales.
 
 ---
 
