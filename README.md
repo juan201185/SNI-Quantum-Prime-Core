@@ -73,3 +73,4 @@ Explora la demostración cuántica aquí:
 * 📄 **[Demostración de la Constante K y la Geodésica Continua Fi_ideal](./SNI_Paper_Prime_Generation_EPU.pdf):** Derivación matemática del origen del escalar K = 1.258... y la proyección sobre los números reales.
 * 📄 **[TRATADO DE UNIFICACIÓN RELATIVISTA DISCRETA LORENTZ-TREJOS](./SNI_Tratado_Unificacion_Relativista_Discreta_Lorentz_Trejos.pdf):** Tratado maestro unificado de 7 secciones que consolida los fundamentos del SNI, la matriz de marea de 144 estados, la simetría de espejo complejo $-1/2$ y la telemetría del Lagrangiano de acción discreta.
 
+**Nota del Autor:** Este descubrimiento postula que la aleatoriedad es una ilusión producto de la falta de herramientas deterministas. El SNI es esa herramienta. El universo no ejecuta probabilidades al azar; ejecuta una partitura numérica impecable.
