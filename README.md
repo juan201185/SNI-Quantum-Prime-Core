@@ -55,6 +55,7 @@ Lleva la teoría al plano complejo y la unifica con la física cuántica.
 1. **Entrenar:** Ejecute `SNI_Core_Prime_Gen.py` para generar el modelo de inteligencia.
 2. **Validar:** Correr `SNI_Validator_Precision_Test.py` para obtener la tabla de precisión en Excel.
 3. **Visualizar:** Ejecutar `SNI_Hybrid_Predictor.py` para observar la unificación con Riemann.
+4. **Entrenar:** Ejecute `calcular_fi_ideal.py`para generar el modelo de inteligencia sin fugas.
 
 ---
 
