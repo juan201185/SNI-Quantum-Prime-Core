@@ -96,17 +96,18 @@ Módulo de estimación determinista de Vida Útil Restante (**RUL**) en turbofan
 
 ## 🛠️ Formulación Matemática Integrada (SNI)
 
-1. **Línea Base Nominal Unitaria ($F_{i, \text{ideal}}^{(u)}$):**
-   $$F_{i, \text{ideal}}^{(u)} = \frac{1}{N_0} \sum_{t=1}^{N_0} X_{i, u}(t)$$
+### 1. Línea Base Nominal Unitaria ($F_{i, \text{ideal}}^{(u)}$)
+$$F_{i, \text{ideal}}^{(u)} = \frac{1}{N_0} \sum_{t=1}^{N_0} X_{i, u}(t)$$
 
-2. **Ponderación de Monotonicidad Espectral ($w_i$):**
-   $$w_i = \frac{\bar{\rho}_i}{\sum_{k=1}^{M} \bar{\rho}_k}, \quad \text{donde } \bar{\rho}_i = \text{Mean}\left(\left\vert{} \text{Corr}_{\text{Spearman}}(X_i, t) \right\vert{}\right)$$
+### 2. Ponderación de Monotonicidad Espectral ($w_i$)
+$$w_i = \frac{\bar{\rho}_i}{\sum_{k=1}^{M} \bar{\rho}_k}, \quad \text{donde } \bar{\rho}_i = \text{Mean}\left( \left| \text{Corr}_{\text{Spearman}}(X_i, t) \right| \right)$$
 
-3. **Operador de Estado Probabilístico $P(X_t)$:**
-   $$D_u(t) = \sqrt{\sum_{i=1}^{M} w_i \cdot \left[ \frac{X_{i, u}(t) - F_{i, \text{ideal}}^{(u)}}{\sigma_{i, \text{nominal}} + \epsilon} \right]^2}$$
-   $$P(X_t) = \exp\left(-\gamma \cdot D_u(t)\right)$$
+### 3. Operador de Estado Probabilístico $P(X_t)$
+$$D_u(t) = \sqrt{\sum_{i=1}^{M} w_i \cdot \left[ \frac{X_{i, u}(t) - F_{i, \text{ideal}}^{(u)}}{\sigma_{i, \text{nominal}} + \epsilon} \right]^2}$$
 
-4. **Acotación Física Piecewise Target ($RUL^*$):**
-   $$RUL^* = \min(RUL_{\text{real}}, 125)$$
+$$P(X_t) = \exp\left(-\gamma \cdot D_u(t)\right)$$
+
+### 4. Acotación Física Piecewise Target ($RUL^*$)
+$$RUL^* = \min(RUL_{\text{real}}, 125)$$
 
 **Nota del Autor:** Este descubrimiento postula que la aleatoriedad es una ilusión producto de la falta de herramientas deterministas. El SNI es esa herramienta. El universo no ejecuta probabilidades al azar; ejecuta una partitura numérica impecable.
