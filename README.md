@@ -80,6 +80,7 @@ Explora la demostración cuántica aquí:
 Módulo de estimación determinista de Vida Útil Restante (**RUL**) en turbofanas térmicas mediante el **Sistema Numérico Impecable (SNI)** sobre el dataset NASA C-MAPSS (Subconjunto FD001).
 
 📄 **Informe Técnico Completo:** [Descargar / Leer PDF Reporte Matemático](./estimacion_vida_util-c-mapss.pdf)
+📄 **Codigo fuente:** [Descargar / Leer .py main.py](./main.py)
 
 ---
 
