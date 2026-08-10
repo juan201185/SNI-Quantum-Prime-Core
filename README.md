@@ -77,37 +77,72 @@ Explora la demostración cuántica aquí:
 
 # SNI Quantum Prime Core - Predictive Maintenance Module
 
-Módulo de estimación determinista de Vida Útil Restante (**RUL**) en turbofanas térmicas mediante el **Sistema Numérico Impecable (SNI)** sobre el dataset NASA C-MAPSS (Subconjunto FD001).
+Módulo de estimación determinista de Vida Útil Restante (RUL) en turbofanas térmicas mediante el **Sistema Numérico Impecable (SNI)** sobre el benchmark aeroespacial completo **NASA C-MAPSS**. 
 
-📄 **Informe Técnico Completo:** [Descargar / Leer PDF Reporte Matemático](./estimacion_vida_util-c-mapss.pdf)
-📄 **Codigo fuente:** [Descargar / Leer .py main.py](./main.py)
+Este proyecto demuestra cómo la purificación matemática del espacio de fase y la inyección de filtros cinemáticos superan a los enfoques tradicionales de "caja negra" (Deep Learning), alcanzando el estado del arte (SOTA) con un costo computacional mínimo.
 
----
+### 📄 Documentación Técnica y Código Fuente
 
-## 📊 Desempeño del Modelo (Benchmark FD001)
-
-| Métrica | Valor Obtenido | Impacto |
-| :--- | :---: | :--- |
-| **Coeficiente $R^2$** | **0.8778** | Ajuste lineal del 87.78% en la curva de degradación. |
-| **Error Cuadrático Medio (RMSE)** | **14.3964 ciclos** | Desviación promedio de solo ~14 ciclos de vuelo a la falla. |
-| **Línea Base Usada** | $F_{i, \text{ideal}}^{(u)}$ Local | Eliminación de sesgo por tolerancias de fabricación. |
+* **[NUEVO] Informe Técnico Global (SOTA):** [`prediccion_de_vida_util_aeroespacial.pdf`](prediccion_de_vida_util_aeroespacial.pdf)
+* **[NUEVO] Código Maestro Global (FD001-FD004):** [`train_global_xgb.py`](train_global_xgb.py)
+* **Informe Inicial (Solo FD001):** [`estimacion_vida_util-c-mapss.pdf`](estimacion_vida_util-c-mapss.pdf)
+* **Código Inicial (Solo FD001):** [`main.py`](main.py)
 
 ---
 
-## 🛠️ Formulación Matemática Integrada (SNI)
+## 📊 Desempeño del Modelo (Benchmark Oficial NASA)
 
-### 1. Línea Base Nominal Unitaria ($F_{i, \text{ideal}}^{(u)}$)
-$$F_{i, \text{ideal}}^{(u)} = \frac{1}{N_0} \sum_{t=1}^{N_0} X_{i, u}(t)$$
+El marco SNI fue evaluado en pruebas ciegas (prediciendo únicamente sobre el último ciclo registrado de cada motor de prueba).
 
-### 2. Ponderación de Monotonicidad Espectral ($w_i$)
-$$w_i = \frac{\bar{\rho}_i}{\sum_{k=1}^{M} \bar{\rho}_k}, \quad \text{donde } \bar{\rho}_i = \text{Mean}\left( \left| \text{Corr}_{\text{Spearman}}(X_i, t) \right| \right)$$
+| Escenario | Métrica | Valor Obtenido | Impacto |
+| :--- | :--- | :--- | :--- |
+| **FD001 (Marco Base)** | **R² Score** | **0.8778** | Ajuste lineal del 87.78% en degradación pura (1 régimen, 1 falla). |
+| **FD001 (Marco Base)** | **RMSE** | **14.39 ciclos** | Supera ampliamente el umbral industrial exigido. |
+| **GLOBAL (FD001 - FD004)** | **R² Score** | **0.8423** | Evaluación a ciegas de 707 motores bajo 6 regímenes de vuelo. |
+| **GLOBAL (FD001 - FD004)** | **RMSE** | **16.71 ciclos** | **Nivel SOTA.** Logra aislar el desgaste del caos atmosférico. |
 
-### 3. Operador de Estado Probabilístico $P(X_t)$
-$$D_u(t) = \sqrt{\sum_{i=1}^{M} w_i \cdot \left[ \frac{X_{i, u}(t) - F_{i, \text{ideal}}^{(u)}}{\sigma_{i, \text{nominal}} + \epsilon} \right]^2}$$
+---
 
+## 🛠️ Formulación Matemática Integrada (SNI Global SOTA)
+
+Para lograr la generalización en los 4 datasets, el modelo base se expandió a un marco híbrido **Físico-Estadístico**, ejecutando los siguientes pasos deterministas antes de la inferencia.
+
+### 1. Desacople Termodinámico de Regímenes (K-Means)
+Aisla las fluctuaciones de los sensores causadas por cambios de altitud o velocidad Mach, particionando el espacio operativo en $K=6$ clústeres:
+$$c(t) = \arg\min_{k \in \{1,\dots,6\}} \left\| S_{\text{config}}(t) - \mu_k \right\|^2$$
+$$\hat{X}_i(t) = \frac{X_i(t) - \mu_{i, c(t)}}{\sigma_{i, c(t)} + \epsilon}$$
+
+### 2. Línea Base Nominal Unitaria ($F_{i, \text{ideal}}^{(u)}$)
+Fija el estado "sano" (desgaste cero) utilizando únicamente los primeros $N_0 = 10$ ciclos de cada motor, eliminando el sesgo por tolerancias de fabricación:
+$$F_{i, \text{ideal}}^{(u)} = \frac{1}{N_0} \sum_{t=1}^{N_0} \hat{X}_{i, u}(t)$$
+
+### 3. Ponderación de Monotonicidad Espectral ($w_i$)
+Filtra el ruido estocástico asignando peso a los sensores según la irreversibilidad temporal de su falla (Correlación de Spearman):
+$$w_i = \frac{\bar{\rho}_i}{\sum_{k=1}^{M} \bar{\rho}_k}, \quad \text{donde } \bar{\rho}_i = \text{Mean}\left( \left| \text{Corr}_{\text{Spearman}}(\hat{X}_i, t) \right| \right)$$
+
+### 4. Operador de Estado Probabilístico $P(X_t)$
+Comprime la dispersión termodinámica multidimensional en un indicador escalar de degradación física entre 1.0 y 0.0:
+$$D_u(t) = \sqrt{\sum_{i=1}^{M} w_i \cdot \left[ \hat{X}_{i, u}(t) - F_{i, \text{ideal}}^{(u)} \right]^2}$$
 $$P(X_t) = \exp\left(-\gamma \cdot D_u(t)\right)$$
 
-### 4. Acotación Física Piecewise Target ($RUL^*$)
+### 5. Filtro Cinemático de Memoria Estocástica
+Impone la irreversibilidad física del desgaste (las microfracturas no se curan) usando una Media Móvil Exponencial (EMA) y extrae la velocidad o gradiente de la falla para el motor XGBoost:
+$$D_{u, \text{EMA}}(t) = \alpha \cdot D_u(t) + (1-\alpha) \cdot D_{u, \text{EMA}}(t-1)$$
+$$v(t) = \frac{d}{dt} D_{u, \text{EMA}}(t) \approx D_{u, \text{EMA}}(t) - D_{u, \text{EMA}}(t-1)$$
+
+### 6. Acotación Física Piecewise Target ($RUL^*$)
+Establece un techo lógico que asume que la degradación exponencial no inicia en el ciclo 1, limitando la vida útil máxima esperada:
 $$RUL^* = \min(RUL_{\text{real}}, 125)$$
+
+---
+
+## 🚀 Ejecución
+
+Para replicar el benchmark global y obtener el RMSE de 16.71 ciclos:
+
+1. Clona el repositorio e instala las dependencias:
+   ```bash
+   pip install pandas numpy scipy scikit-learn xgboost
+   python train_global_xgb.py
 
 **Nota del Autor:** Este descubrimiento postula que la aleatoriedad es una ilusión producto de la falta de herramientas deterministas. El SNI es esa herramienta. El universo no ejecuta probabilidades al azar; ejecuta una partitura numérica impecable.
